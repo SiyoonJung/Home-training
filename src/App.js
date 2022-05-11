@@ -1,22 +1,33 @@
-import './App.css';
-import { Route, Switch } from 'react-router-dom';
-import MyButton from './components/MyButton';
+import './App.scss';
+import { Route } from 'react-router-dom';
 import MyHeader from './components/MyHeader';
-import Home from './pages/Home';
-import Video from './pages/Video';
-import Diary from './pages/Diary';
+import VideoList from './pages/VideoList';
+import DiaryEdit from './pages/DiaryEdit';
+import DiaryList from './pages/DiaryList';
 
 function App() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = ('0' + (today.getMonth() + 1)).slice(-2);
+  const day = ('0' + today.getDate()).slice(-2);
+  const dateString = year + '-' + month  + '-' + day;
+
   return (
     <div className="App">
-      <MyHeader headText={'APP'} />
-      <h1> 유튜브 홈트족 </h1>
-      <MyButton text={'버튼'} onClick={() => alert('')} type={'default'}/>
-      <MyButton text={'버튼'} onClick={() => alert('')} type={'negative'}/>
-      <MyButton text={'버튼'} onClick={() => alert('')} type={'positive'}/>
-      <Route exact path="/" element={<Home />} />
-      <Route exact path="/video" element={<Video />} />
-      <Route exact path="/diary" element={<Diary />} />
+      <>
+      <MyHeader headText={'홈트 다이어리'} rightChild={dateString} />
+      <div className="Intro">운동하기 원하는 부위를 선택해 주세요.</div>
+      <ul className="VideoSelect">
+        <li>팔</li>
+        <li>복부</li>
+        <li>허벅지</li>
+        <li>전신</li>
+      </ul>
+    
+      <Route exact path="/video-list/:sort"><VideoList /></Route>
+      <Route exact path="/diary-edit"><DiaryEdit /></Route>
+      <Route exact path="/diary-list/:id"><DiaryList /></Route>
+      </>
     </div>
   );
 }

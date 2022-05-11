@@ -1,4 +1,4 @@
-const Diary = ({ type, text, onClick }) => {
+const DiaryEdit = ({ type, text, onClick }) => {
     return (
       <button className={'MyButton'} onClick={onClick}>
         {text}
@@ -6,5 +6,5 @@ const Diary = ({ type, text, onClick }) => {
     );
   };
   
-  export default Diary;
+  export default DiaryEdit;
   
